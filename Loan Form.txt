@@ -1,0 +1,27 @@
+we have 88 banks. need to develop a form to collect some data.  to collect data, need to develop a form with below fields.
+
+Beneficiary Name
+Beneficiary NIC
+Beneficiary Address
+Beneficiary GN Division
+Beneficiary Category
+Aswesuma - Extremely poor
+Aswesuma - Transitional
+Samurdhi
+Loan Type
+Interest Rate
+ Aswesuma - Extremely poor - 8%
+ Aswesuma - Transitional   - 9%
+ Samurdhi                  - 4%
+
+
+Project
+Self Employment - Agricultural
+Self Employment - Industrial
+Self Employment - Trade
+Self Employment - Services
+Vocational Training Fees
+
+ 
+Loan Amount
+Loan Issued Date (attach a calender to field)

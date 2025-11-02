@@ -1,0 +1,62 @@
+✅ LOCALLY: server.js IS UPDATED with the fix!
+
+The fix is applied in YOUR local workspace.
+
+However, this means the file on YOUR SERVER (/home/nextsril/lu1/server.js) 
+still has the OLD code.
+
+========================================
+WHAT TO DO NEXT:
+========================================
+
+You need to upload the updated server.js to your server.
+
+Option 1: Edit on server directly
+----------------------------------
+SSH to your server and run:
+  cd /home/nextsril/lu1
+  nano server.js
+
+Find line 243 (look for "Serve the main page" comment)
+Change from:
+  app.get('/', isAuthenticated, (req, res) => {
+      res.redirect('/dashboard');
+  });
+
+To:
+  app.get('/', (req, res) => {
+      if (req.session.userId) {
+          res.redirect('/dashboard');
+      } else {
+          res.redirect('/login');
+      }
+  });
+
+Save: Ctrl+X, then Y, then Enter
+Restart: pm2 restart loan-update-system
+
+Option 2: Upload via File Manager/FTP
+--------------------------------------
+1. Connect to your hosting panel
+2. Go to File Manager
+3. Navigate to /home/nextsril/lu1/
+4. Upload the fixed server.js from your local computer
+5. SSH and restart: pm2 restart loan-update-system
+
+========================================
+TO VERIFY ON SERVER:
+========================================
+
+After updating, run on your server:
+  cd /home/nextsril/lu1
+  grep -A 5 "app.get('/'," server.js | head -6
+
+You should see:
+  app.get('/', (req, res) => {
+      if (req.session.userId) {
+          res.redirect('/dashboard');
+      } else {
+          res.redirect('/login');
+
+If you see "isAuthenticated" in that output, the fix is NOT applied yet.
+

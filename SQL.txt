@@ -1,0 +1,2 @@
+DB user - nextsril_Roshan
+db name -nextsril_loan_update

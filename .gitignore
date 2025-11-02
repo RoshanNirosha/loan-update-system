@@ -1,0 +1,50 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+logs/
+*.log
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# Temporary folders
+tmp/
+temp/
+
+# Distribution/build folders
+dist/
+build/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+Thumbs.db
+.DS_Store
+
+# PM2 logs
+.pm2/
+
+# New folder (duplicate files)
+New folder/
+
+# Zip files
+*.zip
+
+# Loan update zip files
+loan update.zip
+lu1.zip

@@ -1,0 +1,164 @@
+===========================================
+CPANEL QUICK SETUP GUIDE
+Loan Update System Deployment
+===========================================
+
+PRE-DEPLOYMENT CHECKLIST:
+---------------------------
+✓ cPanel access ready
+✓ SSH/Terminal access available
+✓ Another app already running on the server
+✓ Project files on your local computer
+
+STEP 1: CREATE NODE.JS APP IN CPANEL
+--------------------------------------
+1. Login to cPanel
+2. Find "Node.js App" (in Software section)
+3. Click "Create Application"
+4. Fill in:
+   - Node Version: Latest (16+)
+   - Mode: Production
+   - Root: /home/username/loan-system
+   - Startup: server.js
+   - Application URL: **LEAVE EMPTY** (or leave default)
+5. Click "Create" button
+6. **SAVE THE AUTO-GENERATED URL** (you'll need it!)
+   
+IMPORTANT: Don't enter anything in "Application URL" field
+cPanel will generate it automatically like:
+- http://loan-system.yourdomain.com
+- http://yourdomain.com:3000
+
+STEP 2: CREATE DATABASE
+------------------------
+1. cPanel → "MySQL Databases"
+2. Create database: username_loan_system
+3. Create user: username_loan_user (strong password!)
+4. Add user to database with ALL PRIVILEGES
+5. **SAVE credentials!**
+
+STEP 3: UPLOAD FILES
+---------------------
+Via File Manager OR SSH:
+- Upload all files to: /home/username/loan-system/
+- Include: server.js, package.json, public/ folder, logs/ folder
+
+STEP 4: INSTALL DEPENDENCIES
+------------------------------
+In Terminal/SSH:
+  cd ~/loan-system
+  npm install
+
+STEP 5: SET ENVIRONMENT VARIABLES
+-----------------------------------
+In cPanel Node.js App:
+Click "Environment Variables" and add:
+
+  NODE_ENV=production
+  PORT=<check your cPanel assigned port>
+  DB_HOST=localhost
+  DB_USER=username_loan_user
+  DB_PASSWORD=your_db_password
+  DB_NAME=username_loan_system
+  SESSION_SECRET=<generate_random_32_char_string>
+  BCRYPT_SALT_ROUNDS=10
+
+Get PORT from your app settings in cPanel!
+
+STEP 6: SETUP DATABASE
+-----------------------
+In Terminal:
+  cd ~/loan-system
+  node setup_database.js
+
+STEP 7: IMPORT USERS
+---------------------
+In Terminal:
+  cd ~/loan-system
+  node add_all_users_fixed.js
+
+STEP 8: RESTART APP
+-------------------
+In cPanel Node.js App:
+Click "Restart" button
+
+Wait 30-60 seconds for app to start.
+
+STEP 9: ACCESS YOUR APP
+------------------------
+Use the Application URL from Step 1
+
+Example formats:
+- http://your-server-ip:XXXXX
+- http://loan-system.yourdomain.com
+
+You should see the login page!
+
+===========================================
+TROUBLESHOOTING
+===========================================
+
+❌ App won't start
+   → Check logs in cPanel Node.js App
+   → Verify all env vars are set
+   → Check PORT matches cPanel's assignment
+
+❌ Database connection failed
+   → Verify DB credentials in env vars
+   → Test: mysql -u username_loan_user -p username_loan_system
+
+❌ Can't access from browser
+   → Check PORT in URL
+   → Verify firewall allows the port
+   → Check if app status is "Running"
+
+❌ Module not found
+   → Run: npm install again
+   → Check package.json is uploaded
+
+===========================================
+VIEW LOGS
+===========================================
+
+In Terminal:
+  tail -f ~/loan-system/logs/combined.log
+
+Or in cPanel:
+  Node.js App → Your App → Logs
+
+===========================================
+MANAGEMENT
+===========================================
+
+Restart:    cPanel → Node.js App → Restart
+Stop:       cPanel → Node.js App → Stop
+View Logs:  cPanel → Node.js App → Logs
+SSH:        cPanel → Terminal
+
+===========================================
+SECURITY
+===========================================
+
+✓ Change default passwords after first login
+✓ Use strong SESSION_SECRET (32+ characters)
+✓ Regular database backups via cPanel
+✓ Monitor application logs
+✓ Update npm packages regularly
+
+===========================================
+DEFAULT LOGINS
+===========================================
+
+Check usernames.csv for credentials
+Example: gampaha_bank_01 / password123
+
+CHANGE THESE IMMEDIATELY!
+
+===========================================
+READY TO DEPLOY!
+===========================================
+
+Follow the detailed guide: CPANEL_DEPLOYMENT_GUIDE.md
+
+Need help? Check the troubleshooting section!
+

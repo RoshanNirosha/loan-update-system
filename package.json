@@ -1,0 +1,27 @@
+{
+  "name": "loan-update-system",
+  "version": "1.0.0",
+  "description": "Loan data entry system for 88 banks",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "pm2:start": "pm2 start ecosystem.config.js",
+    "pm2:stop": "pm2 stop loan-update-system",
+    "pm2:restart": "pm2 restart loan-update-system",
+    "pm2:status": "pm2 status",
+    "pm2:logs": "pm2 logs loan-update-system",
+    "pm2:delete": "pm2 delete loan-update-system",
+    "deploy:vps": "echo 'Please follow the VPS_DEPLOYMENT_GUIDE.md for deployment instructions'"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "@supabase/supabase-js": "^2.38.4",
+    "bcryptjs": "^2.4.3",
+    "express-session": "^1.17.3",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

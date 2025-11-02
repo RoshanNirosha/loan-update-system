@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: loan-update-system
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: DB_HOST
+        fromDatabase:
+          name: loan-database
+          property: host
+      - key: DB_USER
+        fromDatabase:
+          name: loan-database
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: loan-database
+          property: password
+      - key: DB_NAME
+        fromDatabase:
+          name: loan-database
+          property: database
+
+databases:
+  - name: loan-database
+    plan: free
+    ipAllowList: []

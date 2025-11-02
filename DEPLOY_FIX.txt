@@ -1,0 +1,107 @@
+# How to Deploy the Fix to Your Server
+
+Based on your SSH output, you're using a shared hosting environment with virtualenv.
+
+## Current Status
+✅ Application is running with PM2
+❌ Server.js hasn't been updated with the fix yet
+
+## Steps to Deploy the Fix
+
+### Step 1: Upload the Fixed server.js
+
+You need to upload the updated `server.js` file to your server at:
+`/home/nextsril/lu1/server.js`
+
+**How to upload:**
+1. If you have FTP/cPanel file manager, upload via that
+2. If you have access to modify files, paste the fixed code
+3. Or use your hosting control panel's file editor
+
+### Step 2: The Fix You Need to Apply
+
+Replace lines 243-245 in server.js from:
+```javascript
+app.get('/', isAuthenticated, (req, res) => {
+    res.redirect('/dashboard');
+});
+```
+
+To:
+```javascript
+app.get('/', (req, res) => {
+    if (req.session.userId) {
+        res.redirect('/dashboard');
+    } else {
+        res.redirect('/login');
+    }
+});
+```
+
+### Step 3: Restart PM2
+
+Once the file is updated, run:
+```bash
+npm run pm2:restart
+# Or
+pm2 restart loan-update-system
+```
+
+### Step 4: Check Logs
+
+```bash
+pm2 logs loan-update-system --lines 50
+```
+
+Look for:
+- "Server is running on port 3000"
+- Any database connection errors
+- Any other errors
+
+### Step 5: Check What Port Your App is Running On
+
+```bash
+pm2 logs loan-update-system | grep "Server is running"
+```
+
+This will show you the actual port.
+
+### Step 6: Find Your Application URL
+
+Since you're on shared hosting, your app might not be on port 3000 directly.
+Check with your hosting provider for:
+- Application URL
+- Subdomain assignment
+- Port mapping
+
+Common patterns on shared hosting:
+- https://lu1.yourdomain.com
+- https://yourdomain.com:3000
+- https://162.214.204.205/lu1
+
+## Important: Port Configuration
+
+If you can't access port 3000, check if there's a .env file:
+```bash
+cat .env
+```
+
+Look for the PORT variable. Your hosting might require a specific port.
+
+## Testing Locally on Server
+
+To test if the application works on the server itself:
+```bash
+curl http://localhost:3000
+# Or try the port from your .env file
+```
+
+If this works but external access doesn't, it's a firewall/hosting configuration issue.
+
+## Contact Hosting Support
+
+If you're still stuck, contact your hosting provider and ask:
+1. What URL should I use to access my Node.js application?
+2. Is port 3000 open for external access?
+3. Do I need to configure a subdomain or reverse proxy?
+
