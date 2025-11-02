@@ -11,20 +11,12 @@
     "pm2:restart": "pm2 restart loan-update-system",
     "pm2:status": "pm2 status",
     "pm2:logs": "pm2 logs loan-update-system",
-<<<<<<< HEAD
     "pm2:delete": "pm2 delete loan-update-system",
     "deploy:vps": "echo 'Please follow the VPS_DEPLOYMENT_GUIDE.md for deployment instructions'"
   },
   "dependencies": {
     "express": "^4.18.2",
     "@supabase/supabase-js": "^2.38.4",
-=======
-    "pm2:delete": "pm2 delete loan-update-system"
-  },
-  "dependencies": {
-    "express": "^4.18.2",
-    "mysql2": "^3.6.0",
->>>>>>> 88ae652691d05537b708b91080f0b8b552195c48
     "bcryptjs": "^2.4.3",
     "express-session": "^1.17.3",
     "dotenv": "^16.3.1"
