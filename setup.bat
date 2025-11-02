@@ -15,7 +15,11 @@ echo.
 echo To start the server, run:
 echo   npm start
 echo.
+<<<<<<< HEAD
 echo Then open your browser to http://localhost:3001
+=======
+echo Then open your browser to http://localhost:3000
+>>>>>>> 88ae652691d05537b708b91080f0b8b552195c48
 echo.
 echo Default login credentials:
 echo   Username: gampaha_bank_01

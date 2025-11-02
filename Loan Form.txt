@@ -24,4 +24,8 @@ Vocational Training Fees
 
  
 Loan Amount
+<<<<<<< HEAD
 Loan Issued Date (attach a calender to field)
+=======
+Loan Issued Date (attach a calender to field
+>>>>>>> 88ae652691d05537b708b91080f0b8b552195c48

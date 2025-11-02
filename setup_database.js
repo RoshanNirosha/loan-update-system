@@ -27,7 +27,11 @@ db.connect((err) => {
 
 function createDatabaseAndTables() {
     // Create database
+<<<<<<< HEAD
     db.query('CREATE DATABASE IF NOT EXISTS ' + (process.env.DB_NAME || 'loan_system'), (err) => {
+=======
+    db.query('CREATE DATABASE IF NOT EXISTS loan_system', (err) => {
+>>>>>>> 88ae652691d05537b708b91080f0b8b552195c48
         if (err) {
             console.error('Error creating database:', err);
             return;
@@ -35,7 +39,11 @@ function createDatabaseAndTables() {
         console.log('Database created successfully');
         
         // Use database
+<<<<<<< HEAD
         db.query('USE ' + (process.env.DB_NAME || 'loan_system'), (err) => {
+=======
+        db.query('USE loan_system', (err) => {
+>>>>>>> 88ae652691d05537b708b91080f0b8b552195c48
             if (err) {
                 console.error('Error selecting database:', err);
                 return;
@@ -434,6 +442,7 @@ function importSampleUsers() {
             return;
         }
         
+<<<<<<< HEAD
         // Process users sequentially to avoid connection issues
         function processNextUser(index) {
             if (index >= users.length) {
@@ -448,6 +457,12 @@ function importSampleUsers() {
                 if (err) {
                     console.error('Error hashing password:', err);
                     processNextUser(index + 1);
+=======
+        users.forEach(user => {
+            bcrypt.hash(user.password, parseInt(process.env.BCRYPT_SALT_ROUNDS) || 10, (err, hash) => {
+                if (err) {
+                    console.error('Error hashing password:', err);
+>>>>>>> 88ae652691d05537b708b91080f0b8b552195c48
                     return;
                 }
                 
@@ -458,6 +473,7 @@ function importSampleUsers() {
                     } else {
                         console.log(`User ${user.username} inserted successfully`);
                         insertCount++;
+<<<<<<< HEAD
                     }
                     processNextUser(index + 1);
                 });
@@ -471,6 +487,18 @@ function importSampleUsers() {
             console.log('No users to insert');
             insertSampleLoanData();
         }
+=======
+                        // Check if we've inserted all users
+                        if (insertCount === users.length) {
+                            console.log(`Inserted ${insertCount} users from CSV file`);
+                            // Insert sample loan data
+                            insertSampleLoanData();
+                        }
+                    }
+                });
+            });
+        });
+>>>>>>> 88ae652691d05537b708b91080f0b8b552195c48
     });
 }
 
@@ -554,5 +582,21 @@ function closeDatabaseConnection() {
     });
 }
 
+<<<<<<< HEAD
 // Database connection will be closed after all operations are complete
 // Connection closing is handled in the insertSampleLoanData function
+=======
+// Close database connection after a delay to allow operations to complete
+setTimeout(() => {
+    // Only close if not already closed
+    if (db && db.connection && db.connection._closing !== true) {
+        db.end((err) => {
+            if (err) {
+                console.error('Error closing database connection:', err);
+            } else {
+                console.log('Database connection closed');
+            }
+        });
+    }
+}, 10000);
+>>>>>>> 88ae652691d05537b708b91080f0b8b552195c48

@@ -9,11 +9,15 @@ logs/
 *.log
 
 # Runtime data
+<<<<<<< HEAD
 pids/
+=======
+>>>>>>> 88ae652691d05537b708b91080f0b8b552195c48
 *.pid
 *.seed
 *.pid.lock
 
+<<<<<<< HEAD
 # Coverage directory used by tools like istanbul
 coverage/
 
@@ -31,11 +35,20 @@ build/
 *.swp
 *.swo
 *~
+=======
+# PM2 logs (if using)
+.pm2/
+
+# IDE files
+.vscode/
+.idea/
+>>>>>>> 88ae652691d05537b708b91080f0b8b552195c48
 
 # OS generated files
 Thumbs.db
 .DS_Store
 
+<<<<<<< HEAD
 # PM2 logs
 .pm2/
 
@@ -48,3 +61,12 @@ New folder/
 # Loan update zip files
 loan update.zip
 lu1.zip
+=======
+# Backup files
+*.bak
+*.backup
+
+# Temporary files
+tmp/
+temp/
+>>>>>>> 88ae652691d05537b708b91080f0b8b552195c48

@@ -60,6 +60,7 @@ npm run dev
    npm run pm2:delete
    ```
 
+<<<<<<< HEAD
 ## Deployment Options
 
 ### Free Deployment on Vercel + Supabase (Recommended for Testing)
@@ -103,6 +104,8 @@ chmod +x check_vps.sh
 ./check_vps.sh
 ```
 
+=======
+>>>>>>> 88ae652691d05537b708b91080f0b8b552195c48
 ## PM2 Configuration
 
 The application uses PM2 with the following configuration:
@@ -120,9 +123,15 @@ DB_USER=your_mysql_username
 DB_PASSWORD=your_mysql_password
 DB_NAME=loan_system
 PORT=3000
+<<<<<<< HEAD
 HOST=0.0.0.0
 SESSION_SECRET=your_secret_key_here
 BCRYPT_SALT_ROUNDS=10
 ```
 
 **For cPanel hosting:** Use the environment variables feature in Node.js App manager instead of a `.env` file. See [env.cpanel.template](env.cpanel.template) for reference.
+=======
+SESSION_SECRET=your_secret_key_here
+BCRYPT_SALT_ROUNDS=10
+```
+>>>>>>> 88ae652691d05537b708b91080f0b8b552195c48

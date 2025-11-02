@@ -10,7 +10,11 @@ module.exports = {
     node_args: '--max-old-space-size=512',
     env: {
       NODE_ENV: 'production',
+<<<<<<< HEAD
       PORT: 3001
+=======
+      PORT: 3000
+>>>>>>> 88ae652691d05537b708b91080f0b8b552195c48
     },
     error_file: './logs/err.log',
     out_file: './logs/out.log',
